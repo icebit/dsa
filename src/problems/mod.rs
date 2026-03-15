@@ -3,3 +3,4 @@
 
 pub mod two_sum;
 pub mod container_with_most_water;
+pub mod longest_substring_no_repeat;

@@ -13,8 +13,27 @@
 /// - height = [1,8,6,2,5,4,8,3,7] → 49
 /// - height = [1,1] → 1
 
+use std::cmp;
+
 pub fn max_area(height: Vec<i32>) -> i32 {
-    todo!()
+
+    // moving the pointer at the lowest height can only help
+
+    let mut max = 0;
+    let mut a : i32 = 0;
+    let mut b : i32 = height.len() as i32 - 1;
+
+    while a < b {
+        max = cmp::max(max, cmp::min(height[a as usize], height[b as usize]) * (b - a));
+
+        if height[a as usize] < height[b as usize] {
+            a += 1;
+        } else {
+            b -= 1;
+        }
+    }
+
+    return max;
 }
 
 #[cfg(test)]
