@@ -7,3 +7,4 @@ pub mod longest_substring_no_repeat;
 pub mod subsets;
 pub mod climbing_stairs;
 pub mod coin_change;
+pub mod merge_intervals;

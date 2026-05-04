@@ -45,11 +45,12 @@ fn coin_change_dp(dp: &mut Vec<i32>, coins: &Vec<i32>, amount: i32) -> i32 {
         min = min.min(pre);
     }
 
-    dp[amount as usize] = min + 1;
-
     if min == i32::MAX {
+        dp[amount as usize] = -1;
         return -1;
     }
+
+    dp[amount as usize] = min + 1;
 
     return min + 1;
 }
