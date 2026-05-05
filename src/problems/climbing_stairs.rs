@@ -16,12 +16,12 @@ use std::collections::HashMap;
 /// - n = 3 -> 3  (1+1+1, 1+2, 2+1)
 
 pub fn climb_stairs(n: i32) -> i32 {
-    let mut map : HashMap<i32, i32> = HashMap::new();
+    let mut map: Vec<Option<i32>> = vec![None; (n + 1) as usize];
     return climb_stairs_dp(n, &mut map);
 }
 
-fn climb_stairs_dp(n: i32, map: &mut HashMap<i32, i32>) -> i32 {
-    if let Some(&precalculated) = map.get(&n) {
+fn climb_stairs_dp(n: i32, map: &mut Vec<Option<i32>>) -> i32 {
+    if let Some(precalculated) = map[n as usize] {
         return precalculated;
     }
 
@@ -30,7 +30,7 @@ fn climb_stairs_dp(n: i32, map: &mut HashMap<i32, i32>) -> i32 {
     }
 
     let result = climb_stairs_dp(n - 1, map) + climb_stairs_dp(n - 2, map);
-    map.insert(n, result);
+    map[n as usize] = Some(result);
     result
 }
 
