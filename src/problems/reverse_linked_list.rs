@@ -19,7 +19,23 @@ impl ListNode {
 
 pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     let _ = head;
-    todo!("implement reverse linked list")
+
+    // head > 2 > 3 > 4
+    // head < 2 < 3 < 4
+
+    let mut prev: Option<Box<ListNode>> = None;
+    let mut current = head;
+
+    while let Some(mut node) = current {
+        let next = node.next.take();
+
+        node.next = prev;
+
+        prev = Some(node);
+        current = next;
+    }
+
+    prev
 }
 
 #[cfg(test)]

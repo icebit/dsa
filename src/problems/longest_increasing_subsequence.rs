@@ -20,8 +20,35 @@
 /// - []                           -> 0
 
 pub fn length_of_lis(nums: Vec<i32>) -> i32 {
-    let _ = nums;
-    todo!("implement longest increasing subsequence")
+    let mut sol: Vec<i32> = vec![-1; nums.len()];
+
+    let mut max = 0;
+
+    for j in 0..(nums.len()) {
+        max = std::cmp::max(max, length_of_lis_dp(&nums, j, &mut sol));
+    }
+
+    max
+}
+
+pub fn length_of_lis_dp(num: &Vec<i32>, i: usize, sol: &mut Vec<i32>) -> i32 {
+    if i == 0 {
+        return 1;
+    }
+
+    if sol[i] != -1 {
+        return sol[i];
+    }
+
+    let mut max = 0;
+    for j in 0..i {
+        if num[j] < num[i] {
+            max = std::cmp::max(max, length_of_lis_dp(num, j, sol))
+        }
+    }
+
+    sol[i] = 1 + max;
+    return sol[i];
 }
 
 #[cfg(test)]
@@ -81,9 +108,7 @@ mod tests {
     #[test]
     fn larger() {
         // LIS: [1, 2, 3, 4, 5, 6, 7, 8, 9] -> length 9
-        let nums = vec![
-            10, 22, 9, 33, 21, 50, 41, 60, 80, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-        ];
+        let nums = vec![10, 22, 9, 33, 21, 50, 41, 60, 80, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         assert_eq!(length_of_lis(nums), 9);
     }
 }

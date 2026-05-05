@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 /// # Word Break (Dynamic Programming)
 ///
 /// Given a string `s` and a dictionary of words, return whether `s` can be
@@ -43,8 +41,6 @@ mod tests {
 
     #[test]
     fn empty_string() {
-        let dict: HashSet<String> = HashSet::new();
-        assert_eq!(dict.len(), 0);
         assert!(word_break("".to_string(), vec![]));
     }
 }
