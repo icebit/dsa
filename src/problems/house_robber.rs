@@ -14,7 +14,18 @@
 
 pub fn rob(nums: Vec<i32>) -> i32 {
     let _ = nums;
-    todo!("implement house robber")
+
+    let n = nums.len();
+    let mut sol: Vec<i32> = vec![-1; n];
+    rob_dp(n - 1, &nums, &mut sol)
+}
+
+pub fn rob_dp(i: usize, nums: &Vec<i32>, sol: &mut Vec<i32>) -> i32 {
+    if i == 0 {
+        return nums[i];
+    }
+
+    return std::cmp::max(rob_dp(i - 1, nums, sol), rob_dp(i - 2, nums, sol) + nums[i]);
 }
 
 #[cfg(test)]

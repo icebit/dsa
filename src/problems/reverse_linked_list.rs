@@ -20,10 +20,11 @@ impl ListNode {
 pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     let _ = head;
 
-    // head > 2 > 3 > 4
-    // head < 2 < 3 < 4
+    // head > 2 > 3 > 4 > None
+    // None < head < 2 < 3 < 4
+    // prev < current < next
 
-    let mut prev: Option<Box<ListNode>> = None;
+    let mut prev = None;
     let mut current = head;
 
     while let Some(mut node) = current {
